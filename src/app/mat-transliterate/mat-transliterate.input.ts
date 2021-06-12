@@ -78,8 +78,6 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
     this._language = language;
     if (this.input) {
       this.transliterationControl = this.transliterationService.initTransliterate(this.input, this.language);
-    } else if (this.textarea) {
-      this.transliterationControl = this.transliterationService.initTransliterate(this.textarea, this.language);
     }
   }
 
@@ -108,8 +106,6 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
   @Input() autocomplete: string = '';
 
   @ViewChild('input', { static: false }) input: ElementRef | undefined;
-
-  @ViewChild('textarea', { static: false }) textarea: ElementRef | undefined;
 
   constructor(
     @Optional() @Self() public ngControl: NgControl,
@@ -151,16 +147,12 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
   ngAfterViewInit(): void {
     if (this.input) {
       this.transliterationControl = this.transliterationService.initTransliterate(this.input, this.language);
-    } else if (this.textarea) {
-      this.transliterationControl = this.transliterationService.initTransliterate(this.textarea, this.language);
     }
   }
 
   ngOnDestroy(): void {
     if (this.input) {
       this.transliterationService.destroyTransliterate(this.input);
-    } else if (this.textarea) {
-      this.transliterationService.destroyTransliterate(this.textarea);
     }
     this.stateChanges.next();
     this.focusMonitor.stopMonitoring(this.elementRef.nativeElement);
