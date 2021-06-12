@@ -1,0 +1,21 @@
+textarea,
+input {
+  border: 0;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  outline: none;
+  font: inherit;
+
+  &::placeholder {
+    opacity: 0;
+  }
+}
+
+:host.floating {
+  textarea::placeholder,
+  input::placeholder {
+    opacity: 1;
+  }
+}

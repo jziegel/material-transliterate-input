@@ -1,0 +1,7 @@
+<ng-container *ngIf="type === 'text'">
+  <input type="text" [(ngModel)]="value" [placeholder]="placeholder" #input placeholder="placeholder" (blur)="onBlur()" [ngClass]="language" [attr.autocomplete]="autocomplete">
+</ng-container>
+
+<ng-container *ngIf="type === 'textarea'">
+  <textarea [(ngModel)]="value" [placeholder]="placeholder" #input placeholder="placeholder" (blur)="onBlur()" [ngClass]="language"></textarea>
+</ng-container>
