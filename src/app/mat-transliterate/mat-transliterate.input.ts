@@ -1,6 +1,16 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnDestroy, Optional, Self, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+  Optional,
+  Self,
+  ViewChild,
+} from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
@@ -14,12 +24,13 @@ import { TransliterationService } from '../transliteration.service';
   providers: [
     {
       provide: MatFormFieldControl,
-      useExisting: MatTransliterateInput
+      useExisting: MatTransliterateInput,
     },
-  ]
+  ],
 })
-export class MatTransliterateInput implements ControlValueAccessor, MatFormFieldControl<string>, AfterViewInit, OnDestroy {
-
+export class MatTransliterateInput
+  implements ControlValueAccessor, MatFormFieldControl<string>, AfterViewInit, OnDestroy
+{
   public static nextId = 0;
 
   public stateChanges: Subject<void> = new Subject<void>();
@@ -39,7 +50,7 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
   }
 
   @HostBinding() id = `mat-transliterate-input-${MatTransliterateInput.nextId++}`;
-  
+
   @HostBinding('attr.aria-describedby') describedBy = '';
 
   @Input()
@@ -116,7 +127,7 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
-    focusMonitor.monitor(elementRef.nativeElement, true).subscribe(origin => {
+    focusMonitor.monitor(elementRef.nativeElement, true).subscribe((origin) => {
       this.focused = !!origin;
       this.stateChanges.next();
     });
@@ -126,7 +137,11 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
         this.ngControl.reset();
       }
 
-      if (this.value !== null && this.value !== undefined && (this.ngControl.value === null || this.ngControl.value === undefined)) {
+      if (
+        this.value !== null &&
+        this.value !== undefined &&
+        (this.ngControl.value === null || this.ngControl.value === undefined)
+      ) {
         this.ngControl.control?.setValue(this.value);
       }
     });
@@ -170,8 +185,8 @@ export class MatTransliterateInput implements ControlValueAccessor, MatFormField
     this.disabled = isDisabled;
   }
 
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {};
+  onTouched: any = () => {};
 
   setDescribedByIds(ids: string[]): void {
     this.describedBy = ids.join(' ');

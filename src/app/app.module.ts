@@ -15,10 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransliterationService } from './transliteration.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MatTransliterateInput
-  ],
+  declarations: [AppComponent, MatTransliterateInput],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,11 +27,9 @@ import { TransliterationService } from './transliteration.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule,    
+    MatCardModule,
   ],
-  providers: [
-    TransliterationService
-  ],
-  bootstrap: [AppComponent]
+  providers: [TransliterationService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -10,10 +10,9 @@ interface TranslatableElement {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class TransliterationService implements OnInit  {
-
+export class TransliterationService implements OnInit {
   public isTransliterationLoaded = false;
   private elements: ElementRef[] = [];
   private elementQueue: TranslatableElement[] = [];
@@ -21,8 +20,8 @@ export class TransliterationService implements OnInit  {
   @Output() status = new EventEmitter<any>();
 
   @Output() processing = new EventEmitter<boolean>();
-  
-  constructor(private matSnackBar: MatSnackBar) { }
+
+  constructor(private matSnackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     google.load('elements', '1', {

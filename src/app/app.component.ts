@@ -6,17 +6,14 @@ import { TransliterationService } from './transliteration.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public formGroup: FormGroup;
   public processing = false;
   public language: Language;
 
-  constructor(
-    private transliterationService: TransliterationService,
-    private formBuilder: FormBuilder,
-  ) {
+  constructor(private transliterationService: TransliterationService, private formBuilder: FormBuilder) {
     this.language = Language.SI;
     this.transliterationService.init();
     this.formGroup = this.formBuilder.group({
