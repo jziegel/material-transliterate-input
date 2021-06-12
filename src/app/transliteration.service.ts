@@ -3,12 +3,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Language } from './language';
 
 declare var google: any;
-
 interface TranslatableElement {
   elementRef: ElementRef;
   language: Language;
 }
 
+/**
+ * Docs: https://developers.google.com/transliterate/v1/getting_started#LanguageCode
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -63,11 +65,10 @@ export class TransliterationService implements OnInit {
 
     if (google.elements.transliteration.isBrowserCompatible()) {
       let options = {
+        // https://developers.google.com/transliterate/v1/getting_started#LanguageCode
         sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
-        destinationLanguage: [
-          google.elements.transliteration.LanguageCode.SINHALESE,
-          google.elements.transliteration.LanguageCode.TAMIL,
-        ],
+        // https://developers.google.com/transliterate/v1/getting_started#SupportedDestinationLanguages
+        destinationLanguage: google.elements.transliteration.SupportedDestinationLanguages.ALL,
         shortcutKey: 'ctrl+g',
         transliterationEnabled: false,
       };
@@ -83,6 +84,8 @@ export class TransliterationService implements OnInit {
         duration: 2000,
       });
     }
+
+    console.log('returning', transliterationControl);
 
     return transliterationControl;
   }

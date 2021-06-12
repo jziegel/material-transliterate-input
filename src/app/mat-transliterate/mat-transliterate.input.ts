@@ -86,9 +86,13 @@ export class MatTransliterateInput
     return this._language;
   }
   set language(language: Language) {
+    console.log('set', language)
+    console.log('transliterationControl', this.transliterationControl)
     this._language = language;
-    if (this.input) {
-      this.transliterationControl = this.transliterationService.initTransliterate(this.input, this.language);
+
+    if (this.transliterationControl) {
+      console.log('change', language)
+      this.transliterationService.onLanguageChange(this.transliterationControl, language);
     }
   }
 
@@ -160,8 +164,10 @@ export class MatTransliterateInput
   }
 
   ngAfterViewInit(): void {
-    if (this.input) {
+    if (this.input && !this.transliterationControl) {
+      console.log('ngAfterViewInit 1')
       this.transliterationControl = this.transliterationService.initTransliterate(this.input, this.language);
+      console.log('ngAfterViewInit 2', this.transliterationControl)
     }
   }
 

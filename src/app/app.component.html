@@ -1,6 +1,10 @@
 <div class="container">
   <h1 class="page-heading">Angular Material Transliterate Input</h1>
   <mat-card>
+    <mat-button-toggle-group name="language" aria-label="Language">
+      <mat-button-toggle value="si">Sinhala</mat-button-toggle>
+      <mat-button-toggle value="ta">Tamil</mat-button-toggle>
+    </mat-button-toggle-group>
     <mat-card-content>
       <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <mat-form-field>
